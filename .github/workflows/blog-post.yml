@@ -27,7 +27,7 @@ jobs:
 
             const fileChanged = `${{ steps.changed-files.outputs.all_changed_files }}`
 
-            fs.readFile(changedFiles, 'utf8', (err, data) => {
+            fs.readFile(fileChanged, 'utf8', (err, data) => {
               if (err) {
                 console.error(err);
                 return;
