@@ -23,14 +23,15 @@ jobs:
         uses: actions/github-script@v6.2.0
         with:
           script: |
+            const fs = require("fs");
+
             const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`
             console.log('[ changedFiles ]-------------------------------------------');
             console.log(changedFiles);
             console.log('typeof: ', (typeof changedFiles));
 
-            for (const file of changedFiles) {
-              console.log('[file]', file);
-            }
+            const buffer = fs.readFileSync(changedFiles);
+            console.log(buffer);
 
       # - name: Download files
       #   uses: leandroh/node-blog-action@main
