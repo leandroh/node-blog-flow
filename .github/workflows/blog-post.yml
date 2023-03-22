@@ -45,19 +45,14 @@ jobs:
               console.log('[payload] ----------------------------------------------');
               console.log(payload);
 
-              fetch('https://dummyjson.com/products/1')
-                .then(res => res.json())
-                .then(json => console.log(json))
-
-              /*
-              return await axios.put(batch_update_url, payload, { headers })
+              return await axios.get("https://dummyjson.com/products/1", payload)
                 .then(async (response) => {
                   console.log('[response]', response);
                   core.info('\u001B[34m[INFO] Content Objects updated successfully ✓');
                   return { status: response.status, data: response.data }
                 })
                 .catch(async (error) => ({ status: error.response.status, data: error.response.data }));
-                */
+
             });
 
       # - name: Download files
