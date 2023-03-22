@@ -35,7 +35,7 @@ jobs:
 
               const payload = { content: data }
               console.log('[payload] ----------------------------------------------');
-              console.log(data);
+              console.log(payload);
             });
 
       # - name: Download files
