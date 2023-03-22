@@ -41,10 +41,7 @@ jobs:
                 return;
               }
 
-              const payload = { content: data }
-              console.log('[payload] ----------------------------------------------');
-              console.log(payload);
-
+              const payload = { content: data };
               axios.get("https://dummyjson.com/products/1", payload)
                 .then(async (response) => {
                   console.log('[response]', response);
