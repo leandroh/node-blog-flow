@@ -24,6 +24,7 @@ jobs:
           cache: 'npm'
 
       - run: npm install
+
       - name: List changed files
         if: steps.changed-files.outputs.any_changed == 'true'
         uses: actions/github-script@v6.2.0
@@ -43,6 +44,20 @@ jobs:
               const payload = { content: data }
               console.log('[payload] ----------------------------------------------');
               console.log(payload);
+
+              fetch('https://dummyjson.com/products/1')
+                .then(res => res.json())
+                .then(json => console.log(json))
+
+              /*
+              return await axios.put(batch_update_url, payload, { headers })
+                .then(async (response) => {
+                  console.log('[response]', response);
+                  core.info('\u001B[34m[INFO] Content Objects updated successfully ✓');
+                  return { status: response.status, data: response.data }
+                })
+                .catch(async (error) => ({ status: error.response.status, data: error.response.data }));
+                */
             });
 
       # - name: Download files
