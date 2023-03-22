@@ -45,7 +45,7 @@ jobs:
               console.log('[payload] ----------------------------------------------');
               console.log(payload);
 
-              return await axios.get("https://dummyjson.com/products/1", payload)
+              axios.get("https://dummyjson.com/products/1", payload)
                 .then(async (response) => {
                   console.log('[response]', response);
                   core.info('\u001B[34m[INFO] Content Objects updated successfully ✓');
