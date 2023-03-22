@@ -24,7 +24,6 @@ jobs:
         with:
           script: |
             const fs = require("fs");
-            const fetch = require("cross-fetch/polyfill");
 
             const fileChanged = `${{ steps.changed-files.outputs.all_changed_files }}`
 
