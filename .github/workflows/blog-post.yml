@@ -30,8 +30,13 @@ jobs:
             console.log(changedFiles);
             console.log('typeof: ', (typeof changedFiles));
 
-            const buffer = fs.readFile(changedFiles);
-            console.log(buffer);
+            fs.readFile(changedFiles, 'utf8', (err, data) => {
+            if (err) {
+              console.error(err);
+              return;
+            }
+              console.log(data);
+            });
 
       # - name: Download files
       #   uses: leandroh/node-blog-action@main
