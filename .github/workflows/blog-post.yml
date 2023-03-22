@@ -21,7 +21,17 @@ jobs:
         with:
           script: |
             const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`
+            console.log('[ changedFiles ]-------------------------------------------');
             console.log(changedFiles);
+            console.log('typeof: ', (typeof changedFiles));
+
+            for (const file of changedFiles) {
+              const fileExtension = file.filename.split('.').pop();
+              switch(fileExtension) {
+                case 'md':
+                  console.log('[file]', file);
+              }
+            }
 
       # - name: Download files
       #   uses: leandroh/node-blog-action@main
