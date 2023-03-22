@@ -15,8 +15,11 @@ jobs:
       - name: Get changed files
         id: changed-files
         uses: tj-actions/changed-files@v35
+        with:
+          files: posts/*.md
 
       - name: List changed files
+        if: steps.changed-files.outputs.any_changed == 'true'
         uses: actions/github-script@v6.2.0
         with:
           script: |
@@ -26,11 +29,7 @@ jobs:
             console.log('typeof: ', (typeof changedFiles));
 
             for (const file of changedFiles) {
-              const fileExtension = file.filename.split('.').pop();
-              switch(fileExtension) {
-                case 'md':
-                  console.log('[file]', file);
-              }
+              console.log('[file]', file);
             }
 
       # - name: Download files
