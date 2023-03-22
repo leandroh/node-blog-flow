@@ -42,10 +42,10 @@ jobs:
               }
 
               const payload = { content: data };
-              axios.get("https://dummyjson.com/products/1", payload)
+              axios.get("https://node-blog-flow.fly.dev/api/posts", payload)
                 .then(async (response) => {
                   console.log('[response]', response);
-                  core.info('\u001B[34m[INFO] Content Objects updated successfully ✓');
+                  core.info('\u001B[34m[INFO] Successfully ✓');
                   return { status: response.status, data: response.data }
                 })
                 .catch(async (error) => ({ status: error.response.status, data: error.response.data }));
