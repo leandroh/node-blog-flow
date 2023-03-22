@@ -3,6 +3,7 @@ on: [push]
 jobs:
   download-files:
     name: "Get all added and modified files as JSON"
+    runs-on: ubuntu-latest
     steps:
       - id: files
         uses: jitterbit/get-changed-files@v1
