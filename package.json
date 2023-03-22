@@ -16,8 +16,8 @@
     "url": "https://github.com/leandroh/node-blog-flow/issues"
   },
   "homepage": "https://github.com/leandroh/node-blog-flow#readme",
-  "devDependencies": {},
   "dependencies": {
+    "@actions/core": "^1.10.0",
     "axios": "^1.3.4",
     "express": "^4.18.2",
     "marked": "^4.2.12"
