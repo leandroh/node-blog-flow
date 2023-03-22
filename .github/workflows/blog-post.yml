@@ -24,6 +24,7 @@ jobs:
         with:
           script: |
             const fs = require("fs");
+            const fetch = require("cross-fetch/polyfill");
 
             const fileChanged = `${{ steps.changed-files.outputs.all_changed_files }}`
 
@@ -36,6 +37,10 @@ jobs:
               const payload = { content: data }
               console.log('[payload] ----------------------------------------------');
               console.log(payload);
+
+              fetch("http://example.com/movies.json")
+                .then((response) => response.json())
+                .then((data) => console.log(data));
             });
 
       # - name: Download files
