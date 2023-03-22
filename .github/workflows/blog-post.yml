@@ -26,10 +26,17 @@ jobs:
             const fs = require("fs");
 
             const fileChanged = `${{ steps.changed-files.outputs.all_changed_files }}`
-            const payload = { content: fileChanged }
 
-            console.log('[ fileChanged payload ]-------------------------------------------');
-            console.log(payload);
+            fs.readFile(changedFiles, 'utf8', (err, data) => {
+              if (err) {
+                console.error(err);
+                return;
+              }
+
+              const payload = { content: data }
+              console.log('[payload] ----------------------------------------------');
+              console.log(data);
+            });
 
       # - name: Download files
       #   uses: leandroh/node-blog-action@main
