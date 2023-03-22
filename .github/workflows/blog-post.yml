@@ -25,18 +25,11 @@ jobs:
           script: |
             const fs = require("fs");
 
-            const changedFiles = `${{ steps.changed-files.outputs.all_changed_files }}`
-            console.log('[ changedFiles ]-------------------------------------------');
-            console.log(changedFiles);
-            console.log('typeof: ', (typeof changedFiles));
+            const fileChanged = `${{ steps.changed-files.outputs.all_changed_files }}`
+            const payload = { content: fileChanged }
 
-            fs.readFile(changedFiles, 'utf8', (err, data) => {
-            if (err) {
-              console.error(err);
-              return;
-            }
-              console.log(data);
-            });
+            console.log('[ fileChanged payload ]-------------------------------------------');
+            console.log(payload);
 
       # - name: Download files
       #   uses: leandroh/node-blog-action@main
