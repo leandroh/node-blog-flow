@@ -1,5 +1,4 @@
-name: GitHub Actions Demo
-run-name: ${{ github.actor }} está testando uma GitHub Actions 🚀
+name: Get files as JSON
 on: [push]
 jobs:
   download-files:
