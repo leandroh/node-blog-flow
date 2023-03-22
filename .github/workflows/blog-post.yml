@@ -1,16 +1,16 @@
-name: Get files as JSON
-on: [push]
+name: PR metadata annotation
+on:
+  pull_request:
+    types: [opened, synchronize]
 jobs:
   download-files:
-    name: "Get all added and modified files as JSON"
     runs-on: ubuntu-latest
+    name: Download files from pull request
     steps:
-      - id: files
-        uses: jitterbit/get-changed-files@v1
+      - name: Download files
+        uses: leandroh/node-blog-action@main
         with:
-          format: 'json'
-      - run: |
-          readarray -t added_modified_files <<<"$(jq -r '.[]' <<<'${{ steps.files.outputs.added_modified }}')"
-          for added_modified_file in ${added_modified_files[@]}; do
-            echo "Do something with this ${added_modified_file}."
-          done
+          owner: ${{ github.repository_owner }}
+          repo: ${{ github.event.repository.name }}
+          pr_number: ${{ github.event.number }}
+          token: ${{ secrets.GITHUB_TOKEN }}
