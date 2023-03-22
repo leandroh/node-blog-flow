@@ -1,0 +1,16 @@
+name: GitHub Actions Demo
+run-name: ${{ github.actor }} está testando uma GitHub Actions 🚀
+on: [push]
+jobs:
+  download-files:
+    name: "Get all added and modified files as JSON"
+    steps:
+      - id: files
+        uses: jitterbit/get-changed-files@v1
+        with:
+          format: 'json'
+      - run: |
+          readarray -t added_modified_files <<<"$(jq -r '.[]' <<<'${{ steps.files.outputs.added_modified }}')"
+          for added_modified_file in ${added_modified_files[@]}; do
+            echo "Do something with this ${added_modified_file}."
+          done
