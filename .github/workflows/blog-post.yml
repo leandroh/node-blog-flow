@@ -1,4 +1,4 @@
-name: PR metadata annotation
+name: Download files
 on:
   pull_request:
     types: [opened, synchronize]
@@ -7,10 +7,14 @@ jobs:
     runs-on: ubuntu-latest
     name: Download files from pull request
     steps:
-      - name: Download files
-        uses: leandroh/node-blog-action@main
-        with:
-          owner: ${{ github.repository_owner }}
-          repo: ${{ github.event.repository.name }}
-          pr_number: ${{ github.event.number }}
-          token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
+      - name: Get changed files
+      id: changed-files
+      uses: tj-actions/changed-files@v35
+
+      # - name: Download files
+      #   uses: leandroh/node-blog-action@main
+      #   with:
+      #     owner: ${{ github.repository_owner }}
+      #     repo: ${{ github.event.repository.name }}
+      #     pr_number: ${{ github.event.number }}
+      #     token: ${{ secrets.PERSONAL_ACCESS_TOKEN }}
