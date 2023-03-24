@@ -25,7 +25,7 @@ jobs:
 
       - run: npm install
 
-      - name: List changed files
+      - name: POST Markdown file content
         if: steps.changed-files.outputs.any_changed == 'true'
         uses: actions/github-script@v6.2.0
         with:
@@ -41,10 +41,10 @@ jobs:
                 return;
               }
 
-              const payload = { content: data };
+              const payload = { title: "Blog post", content: data };
               axios.post("https://node-blog-flow.fly.dev/api/posts", payload)
                 .then(async (response) => {
-                  console.log('[response]', response);
+                  console.log('[response]', response.data);
                   core.info('\u001B[34m[INFO] Successfully ✓');
                   return { status: response.status, data: response.data }
                 })
