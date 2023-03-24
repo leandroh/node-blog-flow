@@ -39,7 +39,9 @@ jobs:
                 return;
               }
 
-              const payload = { title: github.event.pull_request.title, content: data };
+              const title = {{ github.event.pull_request.title }};
+
+              const payload = { title: , content: data };
               axios.post("https://node-blog-flow.fly.dev/api/posts", payload)
                 .then(async (response) => {
                   console.log('[response]', response.data);
